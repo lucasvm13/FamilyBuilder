@@ -60,15 +60,23 @@
                            <children>
                               <Button fx:id="entrar" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Entrar">
                                  <HBox.margin>
-                                    <Insets left="80.0" top="40.0" />
+                                    <Insets left="10.0" top="40.0" />
                                  </HBox.margin>
                               </Button>
                               <Button fx:id="cancelar" mnemonicParsing="false" onAction="#fechar" prefHeight="40.0" prefWidth="100.0" text="Cancelar">
                                  <HBox.margin>
-                                    <Insets left="50.0" top="40.0" />
+                                    <Insets left="20.0" top="40.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="cadastrar" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Cadastrar">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="40.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="40.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>

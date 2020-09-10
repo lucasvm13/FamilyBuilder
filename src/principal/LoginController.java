@@ -21,6 +21,7 @@ public class LoginController implements Initializable {
 	@FXML private TextField senha;
 	@FXML private Button entrar;
 	@FXML private Button cancelar;
+	@FXML private Button cadastrar;
 	
 
 
@@ -42,7 +43,7 @@ public class LoginController implements Initializable {
 					Stage stage = new Stage();
 					Parent root = null;
 					try {
-						root = FXMLLoader.load(getClass().getResource("Inicial.fxml"));
+						root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null, "Erro !");
 					}
@@ -60,6 +61,28 @@ public class LoginController implements Initializable {
 				}
 			}
 		} );
+		
+		cadastrar.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Stage stage = new Stage();
+				Parent root = null;
+				try {
+					root = FXMLLoader.load(getClass().getResource("Cadastro.fxml"));
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(null, "Erro !");
+				}
+				
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+				stage.setTitle("Family Builder - Cadastro");
+				
+				entrar.getScene().getWindow().hide();
+			}
+			
+		});
 	}
 	
 	
