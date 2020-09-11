@@ -1,18 +1,24 @@
 package principal;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class CadastroController {
 
 
-	@FXML private Button cadastrar;
+	@FXML private Button btnCadastrar;
 
-	@FXML private Button voltar;
+	@FXML private Button btnVoltar;
 
-	@FXML private Button sair;
+	@FXML private Button btnSair;
 	
 	@FXML private TextField nome;
 	
@@ -24,7 +30,28 @@ public class CadastroController {
 	 * con.conectar(); con.listarUsuariosCadastros(); }
 	 */
 	
+	@FXML
+	private void sair(){
+	    Stage stage = (Stage) btnSair.getScene().getWindow();
+	    stage.close();
+	}
 	
+	
+	@FXML
+	private void voltar(){
+		//Verificar para fechar o stage aberto ao voltar, está ficando aberto
+		Stage stage = new Stage();
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
+		} catch (IOException ex) {
+			JOptionPane.showMessageDialog(null, "Erro !");
+		}
+		
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 
 	@FXML
 	public void cadastrarUsuario() {

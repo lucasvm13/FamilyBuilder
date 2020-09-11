@@ -14,7 +14,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Principal.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
 
 			root.setStyle("-fx-background-color: whitesmoke;");

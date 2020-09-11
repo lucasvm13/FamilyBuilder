@@ -81,17 +81,17 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cadastrarUsuario" prefHeight="40.0" prefWidth="100.0" text="Cadastrar">
+                        <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrarUsuario" prefHeight="40.0" prefWidth="100.0" text="Cadastrar">
                            <HBox.margin>
                               <Insets left="15.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Voltar">
+                        <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="100.0" text="Voltar">
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Sair">
+                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" prefHeight="40.0" prefWidth="100.0" text="Sair">
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
