@@ -33,34 +33,26 @@ public class LoginController implements Initializable {
 		
 		
 		
-		entrar.setOnAction(new EventHandler<ActionEvent>() {
-			
-			
-			@Override
-			public void handle(ActionEvent event) {
-				
-				if(nome.getText().equals("Lucas")&& senha.getText().equals("123")) {
-					Stage stage = new Stage();
-					Parent root = null;
-					try {
-						root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-					} catch (IOException ex) {
-						JOptionPane.showMessageDialog(null, "Erro !");
-					}
-					
-					Scene scene = new Scene(root);
-					stage.setScene(scene);
-					stage.show();
-					stage.setTitle("Family Builder - Home");
-					
-					entrar.getScene().getWindow().hide();
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos !");
-					limpar();
-				}
-			}
-		} );
+		
+		/*
+		 * entrar.setOnAction(new EventHandler<ActionEvent>() {
+		 * 
+		 * 
+		 * @Override public void handle(ActionEvent event) {
+		 * 
+		 * if(nome.getText().equals("Lucas")&& senha.getText().equals("123")) { Stage
+		 * stage = new Stage(); Parent root = null; try { root =
+		 * FXMLLoader.load(getClass().getResource("Home.fxml")); } catch (IOException
+		 * ex) { JOptionPane.showMessageDialog(null, "Erro !"); }
+		 * 
+		 * Scene scene = new Scene(root); stage.setScene(scene); stage.show();
+		 * stage.setTitle("Family Builder - Home");
+		 * 
+		 * entrar.getScene().getWindow().hide();
+		 * 
+		 * } else { JOptionPane.showMessageDialog(null,
+		 * "Usuário ou senha incorretos !"); limpar(); } } } );
+		 */
 		
 		cadastrar.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -95,5 +87,31 @@ public class LoginController implements Initializable {
 	public void limpar() {
 		nome.setText("");
 		senha.setText("");
+	}
+	
+	@FXML
+	public void loginEntrar() {
+		conexaoBanco con = new conexaoBanco();
+		con.conectar();
+		if(con.login(nome.getText().toLowerCase(), senha.getText().toLowerCase())) {
+			fechar();
+			abrirPaginaHome();
+		}
+		limpar();
+		con.encerrerConexao();
+	}
+	
+	@FXML
+	public void abrirPaginaHome() {
+		Stage stg = new Stage();
+		Parent root = null;
+		try { 
+			root = FXMLLoader.load(getClass().getResource("Home.fxml")); 
+		} catch (IOException ex) { 
+			JOptionPane.showMessageDialog(null, "Erro !"); }
+				Scene scene = new Scene(root); 
+				stg.setScene(scene); 
+				stg.show();
+				stg.setTitle("Family Builder - Home");	
 	}
 }
