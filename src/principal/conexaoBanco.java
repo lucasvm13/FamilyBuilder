@@ -34,7 +34,7 @@ public class conexaoBanco {
 		}
 	}
 
-	public void listarUsuarios() {
+	public void listarUsuariosCadastros() {
 
 		try {
 			String query = "SELECT * FROM usuarios ORDER BY nome";
@@ -49,4 +49,21 @@ public class conexaoBanco {
 		}
 	}
 
+	public void cadastrarUsuario(String nome, String senha) {
+		try {
+			String query = "INSERT INTO usuarios (nome, senha) VALUES ('" + nome + "' , '" +senha  +"');";
+			this.statement.executeUpdate(query);
+		} catch (Exception e) {
+			System.out.println("Erro ao adicionar usuário !");
+		}
+	}
+	
+	public void encerrerConexao() {
+		try {
+			this.connection.close();
+		} catch (Exception e) {
+			System.out.println("Erro: " +e.getMessage());
+		}
+	}
+	
 }

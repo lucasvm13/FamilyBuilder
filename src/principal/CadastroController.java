@@ -1,18 +1,12 @@
 package principal;
 
-
-import org.omg.CORBA.INITIALIZE;
-
-import javafx.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class CadastroController {
-	
-	
+
 
 	@FXML private Button cadastrar;
 
@@ -25,36 +19,49 @@ public class CadastroController {
 	@FXML private TextField senha;
 	
 	
-
-	@FXML private void conectarBanco() {
-		conexaoBanco con = new conexaoBanco();
-		con.conectar();
-		if(con.estaConectado()) {
-			con.listarUsuarios();
-		} else {
-			System.out.println("Não está conectado com o banco !");
-		}
-	}
-	
-	@FXML private void voltar(ActionEvent event) {
-		try {
-			new FXMLLoader(getClass().getResource("Login.fxml"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@FXML private void sair() {
-		 Stage stage = (Stage) sair.getScene().getWindow();
-		 stage.close();
-	}
-
+	/*
+	 * @FXML private void listarUsuarios() { conexaoBanco con = new conexaoBanco();
+	 * con.conectar(); con.listarUsuariosCadastros(); }
+	 */
 	
 	
+
 	@FXML
-	private void listarUsuarios() {
-		conectarBanco();
+	public void cadastrarUsuario() {
+		
+		
+		if((nome.getText().isEmpty()) || senha.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O nome e a senha não podem ser vazios !");
+		} else if((nome.getText().length()<6) || (senha.getText().length()<6)) {
+			JOptionPane.showMessageDialog(null, "O nome e senha devem ter no mínimo 6 caracteres !");
+		} else {
+			if(verificaNome(nome.getText())){
+			conexaoBanco con = new conexaoBanco();
+			con.conectar();
+			con.cadastrarUsuario(nome.getText().toLowerCase(), senha.getText().toLowerCase());
+			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso !");
+			limpar();
+			con.encerrerConexao();
+			} else {
+				JOptionPane.showMessageDialog(null, "Apenas permitido letras no nome !");
+			}
+		}
 		
 	}
+	
+	private boolean verificaNome(String nome) {
+		char[] aux = nome.toCharArray();
 
+		for ( int i = 0; i < nome.length(); i++ )
+		    if (Character.isDigit( aux[ i ] ) ) {
+		        return false;
+		    }
+		return true;
+	}
+		
+		
+	public void limpar() {
+		nome.setText("");
+		senha.setText("");
+	}
 }
