@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,11 +25,11 @@ public class CadastroController {
 	
 	@FXML private TextField senha;
 	
+	@FXML private RadioButton RbSexoMasculino;
 	
-	/*
-	 * @FXML private void listarUsuarios() { conexaoBanco con = new conexaoBanco();
-	 * con.conectar(); con.listarUsuariosCadastros(); }
-	 */
+	@FXML private RadioButton RbSexoFeminino;
+	
+	@FXML private TextField dataNascimento;
 	
 	@FXML
 	private void sair(){
@@ -65,7 +66,7 @@ public class CadastroController {
 			if(verificaNome(nome.getText())){
 			conexaoBanco con = new conexaoBanco();
 			con.conectar();
-			con.cadastrarUsuario(nome.getText().toLowerCase(), senha.getText().toLowerCase());
+			con.cadastrarUsuario(nome.getText().toLowerCase(), senha.getText().toLowerCase(), checaRadioButton(RbSexoMasculino, RbSexoFeminino), Integer.parseInt(dataNascimento.getText()));
 			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso !");
 			limpar();
 			con.encerrerConexao();
@@ -74,6 +75,15 @@ public class CadastroController {
 			}
 		}
 		
+	}
+	
+	private char checaRadioButton(RadioButton RbSexoMasculino, RadioButton RbSexoFeminino) {
+		
+		if(RbSexoFeminino.isSelected()) {
+			return 'F';
+		} else {
+		 return 'M';
+		}
 	}
 	
 	private boolean verificaNome(String nome) {
@@ -85,7 +95,6 @@ public class CadastroController {
 		    }
 		return true;
 	}
-		
 		
 	public void limpar() {
 		nome.setText("");

@@ -52,9 +52,9 @@ public class conexaoBanco {
 		}
 	}
 
-	public void cadastrarUsuario(String nome, String senha) {
+	public void cadastrarUsuario(String nome, String senha, char sexo, int data) {
 		try {
-			String query = "INSERT INTO usuarios (nome, senha) VALUES ('" + nome + "' , '" + senha + "');";
+			String query = "INSERT INTO usuarios (nome, senha, sexo, dtnascimento) VALUES ('" + nome + "' , '" + senha + "' , '" + sexo + "' , '" + data + "');";
 			this.statement.executeUpdate(query);
 		} catch (Exception e) {
 			System.out.println("Erro ao adicionar usuário !");
